@@ -142,6 +142,26 @@
     section.module{padding:0 18px 20px}
     .mod-head{margin:0 -18px 18px;padding:16px 18px}
   }
+
+  /* ===== Tabs (chapter navigation) ===== */
+  .tab-nav{display:flex;flex-wrap:wrap;border-bottom:3px solid var(--brand);margin:0 0 26px;position:sticky;top:0;z-index:20;background:var(--bg);padding-top:10px}
+  .tab{padding:11px 14px;font-size:.93rem;font-weight:700;color:#666;background:#eef0f3;border:1px solid #dde1e6;border-bottom:none;cursor:pointer;border-radius:8px 8px 0 0;margin-right:2px;font-family:inherit;transition:all .2s}
+  .tab .tno{color:var(--brand);margin-right:6px}
+  .tab:hover{background:var(--goal);color:var(--brand-d)}
+  .tab.on{background:#fff;color:var(--brand-d);border-color:var(--brand);border-bottom:3px solid #fff;margin-bottom:-3px;z-index:1}
+  .panel{display:none}
+  .panel.on{display:block}
+  .chapter{margin:0 0 22px;padding:22px 26px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#fff}
+  .chapter .eye{font-size:.78rem;letter-spacing:2px;opacity:.85;text-transform:uppercase}
+  .chapter h2{margin:6px 0 4px;font-size:1.5rem;color:#fff}
+  .chapter p{margin:0;opacity:.92;font-size:.95rem}
+  .pnav{display:flex;justify-content:space-between;gap:10px;margin:30px 0 10px}
+  .pn{border:1px solid var(--brand);background:#fff;color:var(--brand-d);border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.92rem}
+  .pn.next{margin-left:auto}
+  .pn:hover{background:var(--goal)}
+  section.module{scroll-margin-top:70px}
+  @media(max-width:640px){.tab{padding:9px 12px;font-size:.85rem}}
+  @media print{.tab-nav,.pnav{display:none}.panel{display:block!important}}
 </style>
 </head>
 <body>
@@ -153,9 +173,9 @@
     <p>AI가 처음인 분을 위한 강의 교안 — 생성형 AI를 이해하고, 직접 써 보고, 똑똑하게 질문하기</p>
     <div class="meta">
       <span>👥 대상: 일반인 입문자</span>
-      <span>⏱️ 3차시 (50분 × 3)</span>
+      <span>⏱️ 3장 (50분 × 3)</span>
       <span>🤖 ChatGPT · Gemini</span>
-      <span>🧩 6개 모듈</span>
+      <span>🧩 7개 모듈</span>
       <span>✍️ 시연 · 실습 · 퀴즈(정답 포함)</span>
     </div>
   </div>
@@ -163,27 +183,25 @@
 
 <div class="wrap">
 
-<nav class="toc">
-  <h2>📚 학습 목차</h2>
-  <ol>
-    <li><a href="#m1">생성형 AI의 이해 <span style="color:var(--sub)">(1차시)</span></a></li>
-    <li><a href="#m2">ChatGPT 시작하기와 기본 기능 <span style="color:var(--sub)">(2차시)</span></a></li>
-    <li><a href="#m3">프롬프트 작성법 <span style="color:var(--sub)">(2차시)</span></a></li>
-    <li><a href="#m4">Gemini 시작하기와 기능 체험 <span style="color:var(--sub)">(3차시)</span></a></li>
-    <li><a href="#m5">ChatGPT vs Gemini · 안전한 AI 사용 <span style="color:var(--sub)">(3차시)</span></a></li>
-    <li><a href="#m6">정리 · 확인 퀴즈 · 과제 <span style="color:var(--sub)">(3차시)</span></a></li>
-  </ol>
-  <table style="margin-top:16px">
-    <tr><th>차시</th><th>시간</th><th>주제</th><th>형태</th></tr>
-    <tr><td>1차시</td><td>50분</td><td>생성형 AI의 이해</td><td>강의 35분 + 시연 15분</td></tr>
-    <tr><td>2차시</td><td>50분</td><td>ChatGPT 실습 · 프롬프트 작성법</td><td>강의 15분 + 실습 35분</td></tr>
-    <tr><td>3차시</td><td>50분</td><td>Gemini 실습 · 비교 · 안전한 사용 · 정리</td><td>실습 35분 + 정리 15분</td></tr>
+<div class="tab-nav" role="tablist"><button class="tab" data-ch="1" role="tab"><span class="tno">1장</span>생성형 AI의 이해</button><button class="tab" data-ch="2" role="tab"><span class="tno">2장</span>ChatGPT와 프롬프트</button><button class="tab" data-ch="3" role="tab"><span class="tno">3장</span>Gemini · 안전한 사용 · 파이썬 맛보기</button></div>
+
+<div class="panel" id="c1" data-ch="1">
+  <div class="chapter"><div class="eye">Chapter 1</div><h2>1장 · 생성형 AI의 이해</h2></div>
+  <nav class="toc">
+    <h2>📚 1장 생성형 AI의 이해 목차</h2>
+    <ol>
+      <li value="1"><a href="#m1">생성형 AI의 이해</a></li>
+    </ol>
+    <table style="margin-top:16px">
+    <tr><th>장</th><th>시간</th><th>주제</th><th>형태</th></tr>
+    <tr><td>1장</td><td>50분</td><td>생성형 AI의 이해</td><td>강의 35분 + 시연 15분</td></tr>
+    <tr><td>2장</td><td>50분</td><td>ChatGPT 실습 · 프롬프트 작성법</td><td>강의 15분 + 실습 35분</td></tr>
+    <tr><td>3장</td><td>50분</td><td>Gemini 실습 · 비교 · 안전한 사용 · 파이썬 맛보기 · 정리</td><td>실습 35분 + 정리 15분</td></tr>
   </table>
   <div class="note" style="margin-bottom:0"><b>준비물</b>
     인터넷이 되는 PC(Chrome 권장) · Google 계정(비밀번호 확인) · 휴대폰(본인 인증·앱 설치용)</div>
-</nav>
+  </nav>
 
-<!-- ================= MODULE 1 ================= -->
 <section class="module" id="m1">
   <div class="mod-head"><div class="mod-num">1</div><h2>생성형 AI의 이해</h2></div>
 
@@ -237,24 +255,6 @@
   </div>
 
   <div class="block">
-    <span class="tag concept">📚 뇌과학자 김대식 교수가 본 AI의 두 전환점</span>
-    <p>뇌과학자 <b class="hl">김대식 KAIST 교수</b>는 60년 가까이 기대와 실패를 되풀이하던 인공지능이 두 번의 큰 전환점을 맞았다고 설명합니다. <b>기계가 세상을 알아보게 된 순간</b>과 <b>기계가 사람과 대화하게 된 순간</b>입니다.</p>
-    <table>
-      <tr><th>시기</th><th>전환점</th><th>기계가 할 수 있게 된 일</th><th>핵심 기술</th></tr>
-      <tr><td style="white-space:nowrap"><b>2012년</b></td><td style="white-space:nowrap">① 기계가 사물을 알아보다</td><td>사진 속 사물 · 얼굴 알아보기 (이미지 인식)</td><td>딥러닝 + 인터넷 빅데이터</td></tr>
-      <tr><td style="white-space:nowrap"><b>2022년</b></td><td style="white-space:nowrap">② 기계가 사람과 대화하다</td><td>사람의 말을 알아듣고 대화 · 글쓰기 (GPT)</td><td>트랜스포머(2017) · 대규모 언어 모델(LLM)</td></tr>
-    </table>
-    <p><b>① 기계가 사물을 알아보다 — 이미지 인식</b></p>
-    <p>2012년 캐나다 토론토대학의 제프리 힌튼 교수 팀은 뇌를 본뜬 여러 층의 신경망(딥러닝)으로, 이전의 어떤 기계보다 사물을 잘 알아보는 AI를 선보였습니다. 인터넷에 쌓인 방대한 사진 데이터가 성공의 열쇠였습니다. 김 교수는 이때부터 <b>“기계가 세상을 알아보기 시작했고”</b> 우리는 <b class="hl">인식형 인공지능</b>의 시대에 살게 되었다고 말합니다. 스마트폰 사진첩이 인물별로 사진을 모아 주고, 얼굴로 잠금을 푸는 것이 모두 이 기술 덕분입니다.</p>
-    <p><b>② 기계가 사람과 대화하다 — GPT</b></p>
-    <p>사물을 알아보게 된 뒤에도 언어는 오랫동안 어려운 숙제였습니다. 시리나 알렉사 같은 음성 비서도 말의 순서와 긴 맥락을 잘 이해하지 못했습니다. 2017년 구글이 발표한 <b>트랜스포머</b>와 이를 바탕으로 한 대규모 언어 모델이 이 벽을 넘었고, 2022년 11월 나온 <b>ChatGPT</b>로 기계와 사람이 의미 있는 대화를 나눌 수 있게 되었습니다. 김 교수는 이제 AI가 있는 것을 알아보는 단계를 넘어 <b>새로운 것을 만들어 내는 생성형 AI</b>로 나아갔다고 봅니다.</p>
-    <p>김 교수는 2개월 동안 ChatGPT와 나눈 대화를 엮은 책 『챗GPT에게 묻는 인류의 미래』에서 그 원리도 짚습니다. ChatGPT는 3,000억 개가 넘는 문장 토큰 사이의 확률 관계를 배워, 질문에 가장 잘 어울리는 문장을 만들어 낼 뿐 진정한 의미로 언어를 이해하는 것은 아니라는 것입니다. 그래서 그는 ChatGPT를 <b>“인류의 생각과 문장을 반사하는 존재적 메아리이자 거울”</b>이라고 표현합니다.</p>
-    <div class="note"><b>수업과 연결하기</b>
-      “확률적으로 가장 잘 어울리는 문장”을 만든다는 설명은 앞에서 배운 <strong>다음 단어(토큰) 예측</strong> 원리와 같은 이야기입니다. 그래서 AI의 답은 그럴듯하지만, 사실인지는 사람이 확인해야 합니다.</div>
-    <p style="font-size:.85rem;color:var(--sub);margin-top:8px">출처: 김대식, 서울대 아시아연구소 『Asia Brief』 3권 21호(2023) 기고 · 김대식, 『챗GPT에게 묻는 인류의 미래』(동아시아, 2023)</p>
-  </div>
-
-  <div class="block">
     <span class="tag concept">🔎 AI와 검색</span>
     <p>이제는 검색창에서도 생성형 AI를 만납니다. Google의 <b class="hl">AI 개요</b>와 네이버의 <b class="hl">AI 브리핑</b>은 검색 결과 맨 위에서 AI가 여러 웹 문서를 읽고 <b>요약한 답</b>을 먼저 보여 줍니다. 답 옆의 작은 표시(예: ‘Amazon Web Services +2’, ‘한국공학대학교 +2’)는 <b>출처</b>로, 누르면 원문을 확인할 수 있습니다.</p>
     <div style="margin:14px 0">
@@ -276,6 +276,24 @@
     </table>
     <div class="note"><b>검색 AI도 틀릴 수 있어요</b>
       AI 요약도 생성형 AI가 만든 답이라 잘못된 내용이 섞일 수 있습니다. 중요한 정보는 출처를 눌러 <strong>원문을 꼭 확인</strong>하세요.</div>
+  </div>
+
+  <div class="block">
+    <span class="tag concept">📚 뇌과학자 김대식 교수가 본 AI의 두 전환점</span>
+    <p>뇌과학자 <b class="hl">김대식 KAIST 교수</b>는 60년 가까이 기대와 실패를 되풀이하던 인공지능이 두 번의 큰 전환점을 맞았다고 설명합니다. <b>기계가 세상을 알아보게 된 순간</b>과 <b>기계가 사람과 대화하게 된 순간</b>입니다.</p>
+    <table>
+      <tr><th>시기</th><th>전환점</th><th>기계가 할 수 있게 된 일</th><th>핵심 기술</th></tr>
+      <tr><td style="white-space:nowrap"><b>2012년</b></td><td style="white-space:nowrap">① 기계가 사물을 알아보다</td><td>사진 속 사물 · 얼굴 알아보기 (이미지 인식)</td><td>딥러닝 + 인터넷 빅데이터</td></tr>
+      <tr><td style="white-space:nowrap"><b>2022년</b></td><td style="white-space:nowrap">② 기계가 사람과 대화하다</td><td>사람의 말을 알아듣고 대화 · 글쓰기 (GPT)</td><td>트랜스포머(2017) · 대규모 언어 모델(LLM)</td></tr>
+    </table>
+    <p><b>① 기계가 사물을 알아보다 — 이미지 인식</b></p>
+    <p>2012년 캐나다 토론토대학의 제프리 힌튼 교수 팀은 뇌를 본뜬 여러 층의 신경망(딥러닝)으로, 이전의 어떤 기계보다 사물을 잘 알아보는 AI를 선보였습니다. 인터넷에 쌓인 방대한 사진 데이터가 성공의 열쇠였습니다. 김 교수는 이때부터 <b>“기계가 세상을 알아보기 시작했고”</b> 우리는 <b class="hl">인식형 인공지능</b>의 시대에 살게 되었다고 말합니다. 스마트폰 사진첩이 인물별로 사진을 모아 주고, 얼굴로 잠금을 푸는 것이 모두 이 기술 덕분입니다.</p>
+    <p><b>② 기계가 사람과 대화하다 — GPT</b></p>
+    <p>사물을 알아보게 된 뒤에도 언어는 오랫동안 어려운 숙제였습니다. 시리나 알렉사 같은 음성 비서도 말의 순서와 긴 맥락을 잘 이해하지 못했습니다. 2017년 구글이 발표한 <b>트랜스포머</b>와 이를 바탕으로 한 대규모 언어 모델이 이 벽을 넘었고, 2022년 11월 나온 <b>ChatGPT</b>로 기계와 사람이 의미 있는 대화를 나눌 수 있게 되었습니다. 김 교수는 이제 AI가 있는 것을 알아보는 단계를 넘어 <b>새로운 것을 만들어 내는 생성형 AI</b>로 나아갔다고 봅니다.</p>
+    <p>김 교수는 2개월 동안 ChatGPT와 나눈 대화를 엮은 책 『챗GPT에게 묻는 인류의 미래』에서 그 원리도 짚습니다. ChatGPT는 3,000억 개가 넘는 문장 토큰 사이의 확률 관계를 배워, 질문에 가장 잘 어울리는 문장을 만들어 낼 뿐 진정한 의미로 언어를 이해하는 것은 아니라는 것입니다. 그래서 그는 ChatGPT를 <b>“인류의 생각과 문장을 반사하는 존재적 메아리이자 거울”</b>이라고 표현합니다.</p>
+    <div class="note"><b>수업과 연결하기</b>
+      “확률적으로 가장 잘 어울리는 문장”을 만든다는 설명은 앞에서 배운 <strong>다음 단어(토큰) 예측</strong> 원리와 같은 이야기입니다. 그래서 AI의 답은 그럴듯하지만, 사실인지는 사람이 확인해야 합니다.</div>
+    <p style="font-size:.85rem;color:var(--sub);margin-top:8px">출처: 김대식, 서울대 아시아연구소 『Asia Brief』 3권 21호(2023) 기고 · 김대식, 『챗GPT에게 묻는 인류의 미래』(동아시아, 2023)</p>
   </div>
 
   <div class="block">
@@ -311,7 +329,19 @@
   </div>
 </section>
 
-<!-- ================= MODULE 2 ================= -->
+  <div class="pnav"><button class="pn next" data-go="2">2장 ChatGPT와 프롬프트 →</button></div>
+</div>
+
+<div class="panel" id="c2" data-ch="2">
+  <div class="chapter"><div class="eye">Chapter 2</div><h2>2장 · ChatGPT와 프롬프트</h2></div>
+  <nav class="toc">
+    <h2>📚 2장 ChatGPT와 프롬프트 목차</h2>
+    <ol>
+      <li value="2"><a href="#m2">ChatGPT 시작하기와 기본 기능</a></li>
+      <li value="3"><a href="#m3">프롬프트 작성법</a></li>
+    </ol>
+  </nav>
+
 <section class="module" id="m2">
   <div class="mod-head"><div class="mod-num">2</div><h2>ChatGPT 시작하기와 기본 기능</h2></div>
 
@@ -378,7 +408,6 @@
   </div>
 </section>
 
-<!-- ================= MODULE 3 ================= -->
 <section class="module" id="m3">
   <div class="mod-head"><div class="mod-num">3</div><h2>프롬프트 작성법</h2></div>
 
@@ -485,7 +514,21 @@ MZ세대의 감성과 트렌드를 반영해 힙한 감성, 개성, 도전 정�
   </div>
 </section>
 
-<!-- ================= MODULE 4 ================= -->
+  <div class="pnav"><button class="pn prev" data-go="1">← 1장 생성형 AI의 이해</button><button class="pn next" data-go="3">3장 Gemini · 안전한 사용 · 파이썬 맛보기 →</button></div>
+</div>
+
+<div class="panel" id="c3" data-ch="3">
+  <div class="chapter"><div class="eye">Chapter 3</div><h2>3장 · Gemini · 안전한 사용 · 파이썬 맛보기</h2></div>
+  <nav class="toc">
+    <h2>📚 3장 Gemini · 안전한 사용 · 파이썬 맛보기 목차</h2>
+    <ol>
+      <li value="4"><a href="#m4">Gemini 시작하기와 기능 체험</a></li>
+      <li value="5"><a href="#m5">ChatGPT vs Gemini · 안전한 AI 사용</a></li>
+      <li value="6"><a href="#m6">AI와 함께 파이썬 맛보기</a></li>
+      <li value="7"><a href="#m7">정리 · 확인 퀴즈 · 과제</a></li>
+    </ol>
+  </nav>
+
 <section class="module" id="m4">
   <div class="mod-head"><div class="mod-num">4</div><h2>Gemini 시작하기와 기능 체험</h2></div>
 
@@ -493,7 +536,7 @@ MZ세대의 감성과 트렌드를 반영해 힙한 감성, 개성, 도전 정�
     <span class="tag goal">🎯 학습목표</span>
     <div class="goal-box"><ul>
       <li>Google 계정으로 Gemini를 시작하고 화면 구성을 설명할 수 있다.</li>
-      <li>Google 앱 연동, 이미지 생성·편집, Deep Research, Gems를 사용할 수 있다.</li>
+      <li>Google 앱 연동, 이미지 생성·편집, Deep Research, 노트북, 스킬을 사용할 수 있다.</li>
     </ul></div>
   </div>
 
@@ -502,7 +545,7 @@ MZ세대의 감성과 트렌드를 반영해 힙한 감성, 개성, 도전 정�
     <p><b>시작하기</b> — <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a> 접속 → <b>Google 계정으로 로그인</b> (별도 가입 없음)</p>
     <table>
       <tr><th>화면 요소</th><th>역할</th></tr>
-      <tr><td>왼쪽 메뉴</td><td>대화 목록 · 새 채팅 · Gems</td></tr>
+      <tr><td>왼쪽 메뉴</td><td>새 채팅 · 라이브러리 · 이미지 · 맞춤설정 · 노트북 · 대화 목록</td></tr>
       <tr><td>입력창 · [+] 첨부</td><td>질문 입력, 파일·사진 첨부</td></tr>
       <tr><td>도구 메뉴</td><td>Deep Research · 이미지 생성 · Canvas 등</td></tr>
       <tr><td>모델 선택</td><td>빠른 모드 / 생각하는 모드 (이름은 화면에서 확인)</td></tr>
@@ -513,8 +556,11 @@ MZ세대의 감성과 트렌드를 반영해 힙한 감성, 개성, 도전 정�
       <tr><td><b>이미지 생성·편집</b></td><td>글로 이미지를 만들거나, 올린 사진을 말로 편집</td></tr>
       <tr><td><b>Deep Research</b></td><td>여러 웹 자료를 스스로 찾아 읽고 <b>보고서</b>로 정리 (몇 분 걸림)</td></tr>
       <tr><td><b>Docs로 내보내기</b></td><td>답변 아래 ⋮(더보기) → 답을 Google 문서로 만들어 <b>Google 드라이브에 저장</b></td></tr>
-      <tr><td><b>Gems</b></td><td>역할·말투를 미리 저장한 <b>나만의 맞춤 AI</b></td></tr>
+      <tr><td><b>노트북</b></td><td>주제별로 채팅 · 파일 · 맞춤 지침을 한곳에 모아 두는 <b>작업 공간</b> (ChatGPT의 프로젝트와 비슷). NotebookLM과 자동 동기화</td></tr>
+      <tr><td><b>스킬</b></td><td>역할 · 말투 · 출력 형식을 저장해 두고 채팅에서 <code>/</code> + 스킬 이름으로 불러 쓰는 <b>나만의 맞춤 요청</b>. <b>맞춤설정 → 스킬</b>에서 만든다</td></tr>
     </table>
+    <div class="note"><b>Gems는 스킬로 바뀌었어요</b>
+      예전의 <strong>Gems</strong>는 2026년 11월 17일부터 맞춤설정으로 옮겨졌고, 개인 계정에서는 <strong>스킬</strong>로 자동 이전되고 있습니다. 스킬은 만 18세 이상 개인 계정에서, <strong>활동 기록 유지</strong>가 켜져 있어야 쓸 수 있습니다.</div>
   </div>
 
   <div class="block">
@@ -561,7 +607,6 @@ Gemini의 답이 <b>Google 문서(Docs)</b>로 만들어져 <b>내 Google 드라
   </div>
 </section>
 
-<!-- ================= MODULE 5 ================= -->
 <section class="module" id="m5">
   <div class="mod-head"><div class="mod-num">5</div><h2>ChatGPT vs Gemini · 안전한 AI 사용</h2></div>
 
@@ -580,7 +625,8 @@ Gemini의 답이 <b>Google 문서(Docs)</b>로 만들어져 <b>내 Google 드라
       <tr><th>항목</th><th>ChatGPT</th><th>Gemini</th></tr>
       <tr><td>시작</td><td>별도 가입 (Google 계정으로 간편 가입 가능)</td><td>Google 계정으로 바로 사용</td></tr>
       <tr><td>강점</td><td>대화 흐름, 글쓰기, 파일 분석, 다양한 확장 기능</td><td>Google 검색·YouTube·Gmail·Drive 연동, 이미지·동영상 이해</td></tr>
-      <tr><td>맞춤 AI</td><td>GPTs · 프로젝트</td><td>Gems</td></tr>
+      <tr><td>작업 공간</td><td><b>프로젝트</b> — 채팅 · 파일 · 지침을 한곳에</td><td><b>노트북</b> — 채팅 · 파일 · 지침을 한곳에, NotebookLM과 동기화</td></tr>
+      <tr><td>맞춤 AI</td><td>GPTs</td><td>스킬 (예전 Gems)</td></tr>
       <tr><td>코딩 확장</td><td>Codex (2일차)</td><td>Google AI Studio (3일차) · Colab (5일차)</td></tr>
       <tr><td>요금</td><td>무료 + 유료 플랜</td><td>무료 + Google AI 유료 플랜</td></tr>
     </table>
@@ -609,9 +655,125 @@ Gemini의 답이 <b>Google 문서(Docs)</b>로 만들어져 <b>내 Google 드라
   </div>
 </section>
 
-<!-- ================= MODULE 6 ================= -->
 <section class="module" id="m6">
-  <div class="mod-head"><div class="mod-num">6</div><h2>정리 · 확인 퀴즈 · 과제</h2></div>
+  <div class="mod-head"><div class="mod-num">6</div><h2>AI와 함께 파이썬 맛보기</h2></div>
+
+  <div class="block">
+    <span class="tag goal">🎯 학습목표</span>
+    <div class="goal-box"><ul>
+      <li>생활 속 문제를 AI에게 설명해 파이썬 프로그램을 만들게 할 수 있다.</li>
+      <li>AI가 만든 코드에서 <b>변수 · 조건문 · 반복문</b>이 어디에 쓰였는지 찾을 수 있다.</li>
+      <li>“한 줄씩 설명해 줘”, “숫자를 바꿔 줘”로 코드를 이해하고 고쳐 볼 수 있다.</li>
+    </ul></div>
+  </div>
+
+  <div class="block">
+    <span class="tag concept">📖 개념 및 설명</span>
+    <p>파이썬 문법을 먼저 외우지 않아도 됩니다. <b>생활 속 문제를 AI에게 말로 설명</b>하면 AI가 파이썬 코드를 만들어 줍니다. 우리는 그 코드를 실행해 보고, 궁금한 줄을 AI에게 물으며 자연스럽게 파이썬을 익힙니다. 오늘 오후 파이썬 시간에 배울 세 가지 문법을 미리 만나 봅니다.</p>
+    <table>
+      <tr><th>문법</th><th>쉽게 말하면</th><th>생활 속 예</th></tr>
+      <tr><td><b>변수</b></td><td>값에 이름을 붙여 담아 두는 <b>상자</b></td><td>지갑 속 돈, 마신 물 잔 수</td></tr>
+      <tr><td><b>조건문</b> (if)</td><td>“만약 ~라면 이렇게, 아니면 저렇게” <b>판단</b></td><td>돈이 남으면 쿠키도 산다</td></tr>
+      <tr><td><b>반복문</b> (for · while)</td><td>같은 일을 여러 번 <b>되풀이</b></td><td>매시간 물 한 잔, 돈이 있는 동안 계속 사기</td></tr>
+    </table>
+    <div class="note"><b>코드는 어디서 실행하나요?</b>
+      ChatGPT에 <strong>“이 코드를 실행해서 결과도 보여 줘”</strong>라고 하면 대화창 안에서 바로 실행해 결과를 보여 줍니다. 오후에 파이썬을 설치한 뒤에는 IDLE에 같은 코드를 직접 입력해 실행해 보세요.</div>
+  </div>
+
+  <div class="block">
+    <span class="tag ex">💡 예제 1 — 오늘 물 8잔 마셨을까?</span>
+    <p><b>생활 문제</b> — 하루에 물 8잔을 마시기로 했습니다. 오전 9시부터 오후 5시까지 매시간 한 잔씩 마시면 목표를 채울 수 있을까요?</p>
+    <div class="prompt" style="border-color:#bfe9e3"><code>나는 파이썬을 처음 배우는 사람이야. 하루 물 마시기 목표가 8잔인데, 9시부터 17시까지 매시간 한 잔씩 마신다고 할 때 시간마다 몇 잔째인지 보여 주고, 마지막에 목표를 달성했는지 알려 주는 파이썬 코드를 만들어 줘. 변수, 반복문, 조건문을 쓰고 아주 쉬운 주석을 달아 줘. 실행 결과도 보여 줘.</code></div>
+    <p>AI가 만든 코드는 대략 아래와 같습니다.</p>
+<pre><code>goal = <span class="nu">8</span>          <span class="cm"># 변수: 목표 잔 수</span>
+cups = <span class="nu">0</span>          <span class="cm"># 변수: 지금까지 마신 잔 수</span>
+
+<span class="kw">for</span> hour <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">9</span>, <span class="nu">18</span>):     <span class="cm"># 반복문: 9시부터 17시까지</span>
+    cups = cups + <span class="nu">1</span>                <span class="cm"># 한 잔 마실 때마다 1 더하기</span>
+    <span class="fn">print</span>(hour, <span class="st">"시: 물"</span>, cups, <span class="st">"잔째"</span>)
+
+<span class="kw">if</span> cups &gt;= goal:                   <span class="cm"># 조건문: 목표를 채웠나?</span>
+    <span class="fn">print</span>(<span class="st">"오늘 목표 달성! 총"</span>, cups, <span class="st">"잔"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"목표까지"</span>, goal - cups, <span class="st">"잔 남았어요"</span>)</code></pre>
+    <div class="result"><b>실행 결과</b>
+9 시: 물 1 잔째
+10 시: 물 2 잔째
+…
+17 시: 물 9 잔째
+오늘 목표 달성! 총 9 잔</div>
+    <table>
+      <tr><th>코드 속 부분</th><th>문법</th><th>하는 일</th></tr>
+      <tr><td><code>goal = 8</code>, <code>cups = 0</code></td><td><b>변수</b></td><td>목표와 마신 잔 수를 담아 둠</td></tr>
+      <tr><td><code>for hour in range(9, 18):</code></td><td><b>반복문</b></td><td>9시부터 17시까지 아홉 번 되풀이</td></tr>
+      <tr><td><code>if cups &gt;= goal:</code> … <code>else:</code></td><td><b>조건문</b></td><td>목표를 채웠는지 판단해 다른 말을 출력</td></tr>
+    </table>
+  </div>
+
+  <div class="block">
+    <span class="tag ex">💡 예제 2 — 2만 원으로 커피 몇 잔?</span>
+    <p><b>생활 문제</b> — 지갑에 20,000원이 있습니다. 4,500원짜리 아메리카노를 돈이 떨어질 때까지 사면 몇 잔을 살 수 있고, 남은 돈으로 3,000원짜리 쿠키도 살 수 있을까요?</p>
+    <div class="prompt" style="border-color:#bfe9e3"><code>파이썬 초보야. 20000원으로 4500원짜리 아메리카노를 돈이 남아 있는 동안 계속 산다고 할 때, 몇 잔을 살 수 있고 얼마가 남는지 계산하는 코드를 만들어 줘. 남은 돈이 3000원 이상이면 '쿠키도 살 수 있다'고, 아니면 '다음에'라고 알려 줘. while 반복문과 if 조건문을 쓰고 쉬운 주석을 달아 줘. 실행 결과도 보여 줘.</code></div>
+<pre><code>money = <span class="nu">20000</span>      <span class="cm"># 변수: 지갑 속 돈</span>
+price = <span class="nu">4500</span>       <span class="cm"># 변수: 아메리카노 가격</span>
+count = <span class="nu">0</span>          <span class="cm"># 변수: 산 커피 잔 수</span>
+
+<span class="kw">while</span> money &gt;= price:            <span class="cm"># 반복문: 돈이 커피값보다 많은 동안</span>
+    money = money - price          <span class="cm"># 커피값 내기</span>
+    count = count + <span class="nu">1</span>              <span class="cm"># 한 잔 추가</span>
+
+<span class="fn">print</span>(<span class="st">"아메리카노"</span>, count, <span class="st">"잔을 살 수 있어요"</span>)
+<span class="fn">print</span>(<span class="st">"남은 돈:"</span>, money, <span class="st">"원"</span>)
+
+<span class="kw">if</span> money &gt;= <span class="nu">3000</span>:                 <span class="cm"># 조건문: 쿠키값이 남았나?</span>
+    <span class="fn">print</span>(<span class="st">"쿠키도 하나 살 수 있어요!"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"쿠키는 다음에…"</span>)</code></pre>
+    <div class="result"><b>실행 결과</b>
+아메리카노 4 잔을 살 수 있어요
+남은 돈: 2000 원
+쿠키는 다음에…</div>
+    <table>
+      <tr><th>코드 속 부분</th><th>문법</th><th>하는 일</th></tr>
+      <tr><td><code>money</code>, <code>price</code>, <code>count</code></td><td><b>변수</b></td><td>돈 · 가격 · 잔 수를 담아 두고, 계산하며 값이 바뀜</td></tr>
+      <tr><td><code>while money &gt;= price:</code></td><td><b>반복문</b></td><td>몇 번 돌지 모를 때, 조건이 맞는 동안 계속 되풀이</td></tr>
+      <tr><td><code>if money &gt;= 3000:</code> … <code>else:</code></td><td><b>조건문</b></td><td>남은 돈으로 쿠키를 살 수 있는지 판단</td></tr>
+    </table>
+    <div class="note"><b>for와 while의 차이</b>
+      예제 1처럼 <strong>몇 번 반복할지 알 때</strong>는 <code>for</code>, 예제 2처럼 <strong>“돈이 남아 있는 동안”처럼 조건으로 멈출 때</strong>는 <code>while</code>을 씁니다.</div>
+  </div>
+
+  <div class="block">
+    <span class="tag lab">✏️ 실습문제</span>
+    <div class="lab-box ai-lab">
+      <h4>🤖 AI 실습 6-1. 한 줄씩 설명받기</h4>
+      <div class="req">예제 1이나 2의 코드를 ChatGPT에 붙여넣고 <b>“이 코드를 한 줄씩 초보자도 알 수 있게 설명해 줘”</b>라고 요청하세요. 설명을 읽고 변수 · 조건문 · 반복문이 쓰인 줄에 각각 표시해 보세요.</div>
+      <details class="answer"><summary>핵심 보기</summary><div class="body">
+        <p style="margin:0">모르는 단어(<code>range</code>, <code>&gt;=</code>, <code>else</code> 등)가 나오면 그 단어만 다시 물어보세요. <b>AI에게 묻고 → 실행해 보고 → 이해하기</b>가 오늘 파이썬 공부의 순서입니다.</p>
+      </div></details>
+    </div>
+    <div class="lab-box ai-lab">
+      <h4>🤖 AI 실습 6-2. 숫자를 바꿔 결과 예측하기</h4>
+      <div class="req">예제 2에서 <b>지갑의 돈을 30,000원</b>으로 바꾸면 결과가 어떻게 될지 먼저 손으로 계산해 적어 보세요. 그다음 ChatGPT에 “money를 30000으로 바꿔서 다시 실행해 줘”라고 요청해 내 예측과 비교하세요.</div>
+      <details class="answer"><summary>정답 보기</summary><div class="body">
+        <div class="result">아메리카노 6 잔을 살 수 있어요
+남은 돈: 3000 원
+쿠키도 하나 살 수 있어요!</div>
+        <p style="margin:6px 0 0;font-size:.9rem;color:var(--sub)">30,000 − 4,500 × 6 = 3,000원이 남아 조건 <code>money &gt;= 3000</code>이 참이 됩니다. AI 답이 내 계산과 같은지 꼭 확인하세요.</p>
+      </div></details>
+    </div>
+    <div class="lab-box ai-lab">
+      <h4>🤖 AI 실습 6-3. 내 생활 문제로 만들기</h4>
+      <div class="req">내 생활에서 <b>반복</b>되고 <b>판단</b>이 필요한 문제를 하나 골라, 예제처럼 AI에게 파이썬 코드를 만들어 달라고 해 보세요. (예: 하루 걸음 수 목표, 한 달 저축 계획, 버스 도착까지 남은 정류장)</div>
+      <details class="answer"><summary>예시 프롬프트 보기</summary><div class="body">
+        <div class="prompt"><code>파이썬 초보야. 매달 30만 원씩 저축하면 목표 금액 200만 원을 몇 달 만에 모을 수 있는지 계산하는 코드를 만들어 줘. 달마다 모은 금액을 보여 주고, 목표를 넘으면 '목표 달성'이라고 알려 줘. 변수, 반복문, 조건문을 쓰고 쉬운 주석과 실행 결과도 보여 줘.</code></div>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<section class="module" id="m7">
+  <div class="mod-head"><div class="mod-num">7</div><h2>정리 · 확인 퀴즈 · 과제</h2></div>
 
   <div class="block">
     <span class="tag goal">🎯 핵심 요약</span>
@@ -631,10 +793,10 @@ Gemini의 답이 <b>Google 문서(Docs)</b>로 만들어져 <b>내 Google 드라
         2. LLM이 답을 만드는 핵심 원리는?<br>
         3. AI가 사실이 아닌 내용을 그럴듯하게 만드는 현상은?<br>
         4. 프롬프트 다섯 요소 중 “표로 정리해 줘”는 어느 것인가?<br>
-        5. Gemini에서 나만의 맞춤 AI를 만드는 기능의 이름은?
+        5. Gemini에서 역할 · 말투를 저장해 두고 채팅에서 /로 불러 쓰는 기능의 이름은?
       </div>
       <details class="answer"><summary>정답 보기</summary><div class="body">
-        <p style="margin:0">1. <b>Generative</b>(생성하는) &nbsp; 2. <b>다음 단어(토큰) 예측</b> &nbsp; 3. <b>환각(Hallucination)</b> &nbsp; 4. <b>형식</b> &nbsp; 5. <b>Gems</b></p>
+        <p style="margin:0">1. <b>Generative</b>(생성하는) &nbsp; 2. <b>다음 단어(토큰) 예측</b> &nbsp; 3. <b>환각(Hallucination)</b> &nbsp; 4. <b>형식</b> &nbsp; 5. <b>스킬</b> (예전 이름: Gems)</p>
       </div></details>
     </div>
   </div>
@@ -654,11 +816,39 @@ Gemini의 답이 <b>Google 문서(Docs)</b>로 만들어져 <b>내 Google 드라
   </div>
 </section>
 
+  <div class="pnav"><button class="pn prev" data-go="2">← 2장 ChatGPT와 프롬프트</button></div>
+</div>
+
 <footer>
   <p>ChatGPT &amp; 파이썬 기초 프로그래밍 · 1일차 AI — 생성형 AI GPT 사용 (ChatGPT · Gemini)<br>
   본 교안은 강의용 학습 자료입니다. · 학습 원칙: <b>AI에게 묻고 → 직접 확인하고 → 스스로 이해하기</b></p>
 </footer>
 
 </div>
+<script>
+(function(){
+  var KEY="tab-ai1";
+  var tabs=document.querySelectorAll('.tab'),panels=document.querySelectorAll('.panel');
+  function show(n,top){
+    n=String(n);
+    tabs.forEach(function(t){var on=t.dataset.ch===n;t.classList.toggle('on',on);t.setAttribute('aria-selected',on)});
+    panels.forEach(function(p){p.classList.toggle('on',p.dataset.ch===n)});
+    try{localStorage.setItem(KEY,n)}catch(e){}
+    if(top){window.scrollTo({top:0,behavior:'smooth'})}
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.ch,true);history.replaceState(null,'','#c'+t.dataset.ch)})});
+  document.querySelectorAll('.pn').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go,true);history.replaceState(null,'','#c'+b.dataset.go)})});
+  function fromHash(){
+    var id=decodeURIComponent(location.hash.slice(1)); if(!id) return false;
+    var el=document.getElementById(id); if(!el) return false;
+    var p=el.classList.contains('panel')?el:el.closest('.panel'); if(!p) return false;
+    show(p.dataset.ch,false);
+    if(!el.classList.contains('panel')) setTimeout(function(){el.scrollIntoView()},0);
+    return true;
+  }
+  window.addEventListener('hashchange',fromHash);
+  if(!fromHash()){var saved=null;try{saved=localStorage.getItem(KEY)}catch(e){} if(!saved||!document.querySelector('.panel[data-ch="'+saved+'"]')) saved='1'; show(saved,false)}
+})();
+</script>
 </body>
 </html>
