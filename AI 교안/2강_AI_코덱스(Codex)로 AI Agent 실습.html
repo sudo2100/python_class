@@ -578,20 +578,10 @@ menus = [<span class="st">"김치찌개"</span>, <span class="st">"비빔밥"</s
   </div>
 
   <div class="block">
-    <span class="tag lab">✏️ 실습문제</span>
-    <div class="lab-box ai-lab">
-      <h4>🤖 AI 실습 4-1. 메뉴 바꿔 다시 실행하기</h4>
-      <div class="req">Codex에게 점심 메뉴를 <b>내가 좋아하는 메뉴 7가지</b>로 바꾸고, <b>메뉴 2개를 골라 주도록</b> 고쳐 달라고 한 뒤 실행 결과를 확인하세요.</div>
-      <details class="answer"><summary>예시 프롬프트 보기</summary><div class="body">
-        <div class="prompt"><code>lunch.py의 메뉴를 쌀국수, 초밥, 떡볶이, 냉면, 순대국, 파스타, 샌드위치로 바꾸고, 겹치지 않게 2개를 골라 보여 주도록 고쳐 줘. 고친 다음 실행해서 결과도 보여 줘.</code></div>
-        <p style="margin:6px 0 0;font-size:.9rem;color:var(--sub)">겹치지 않게 여러 개를 고를 때는 <code>random.sample(menus, 2)</code>를 씁니다. Codex가 어떤 방법을 썼는지 확인해 보세요.</p>
-      </div></details>
-    </div>
-    <div class="lab-box ai-lab">
-      <h4>🤖 AI 실습 4-2. 용돈기입장 만들기</h4>
-      <div class="req">항목별 지출을 <b>딕셔너리</b>에 담고, 총합을 계산하는 <b>함수</b>를 써서 <b>항목별 금액과 합계</b>를 보여 주는 프로그램을 Codex에게 만들게 하세요. 완성되면 “한 줄씩 설명해 줘”로 코드를 이해해 보세요.</div>
-      <details class="answer"><summary>예시 프롬프트 · 예시 코드 보기</summary><div class="body">
-        <div class="prompt"><code>이번 주 지출을 정리하는 용돈기입장 프로그램을 money.py로 만들어 줘. 식비 35000, 교통비 12000, 카페 9000, 책 15000을 딕셔너리에 담고, 합계를 구하는 함수를 만들어서 항목별 금액과 합계를 보기 좋게 출력해 줘. 주석도 달고 실행 결과도 보여 줘.</code></div>
+    <span class="tag ex">💡 예제</span>
+    <p><b>용돈기입장 만들기</b> — 항목별 지출을 <b>딕셔너리</b>에 담고, 합계를 구하는 <b>함수</b>를 써서 항목별 금액과 합계를 보여 주는 프로그램입니다.</p>
+    <div class="prompt" style="border-color:#bfe9e3"><code>이번 주 지출을 정리하는 용돈기입장 프로그램을 money.py로 만들어 줘. 식비 35000, 교통비 12000, 카페 9000, 책 15000을 딕셔너리에 담고, 합계를 구하는 함수를 만들어서 항목별 금액과 합계를 보기 좋게 출력해 줘. 주석도 달고 실행 결과도 보여 줘.</code></div>
+    <p>Codex가 만든 코드는 대략 아래와 같습니다.</p>
 <pre><code><span class="cm"># 항목별 지출 (딕셔너리: 이름표와 값의 짝)</span>
 spending = {<span class="st">"식비"</span>: <span class="nu">35000</span>, <span class="st">"교통비"</span>: <span class="nu">12000</span>, <span class="st">"카페"</span>: <span class="nu">9000</span>, <span class="st">"책"</span>: <span class="nu">15000</span>}
 
@@ -601,12 +591,126 @@ spending = {<span class="st">"식비"</span>: <span class="nu">35000</span>, <sp
 <span class="kw">for</span> item, cost <span class="kw">in</span> spending.<span class="fn">items</span>():
     <span class="fn">print</span>(<span class="st">f"</span>{item}<span class="st">: </span>{cost:,}<span class="st">원"</span>)
 <span class="fn">print</span>(<span class="st">f"합계: </span>{<span class="fn">total</span>(spending):,}<span class="st">원"</span>)</code></pre>
-        <div class="result">식비: 35,000원
+    <div class="result"><b>실행 결과</b>
+식비: 35,000원
 교통비: 12,000원
 카페: 9,000원
 책: 15,000원
 합계: 71,000원</div>
-        <p style="margin:6px 0 0;font-size:.9rem;color:var(--sub)">Codex가 만든 코드는 이와 조금 다를 수 있습니다. <b>합계가 71,000원으로 맞는지</b> 직접 계산해 검증하세요.</p>
+    <table>
+      <tr><th>코드 속 요소</th><th>오늘 배울 파이썬 문법</th></tr>
+      <tr><td><code>spending = { ... }</code></td><td><b>딕셔너리</b> — 이름표(키)와 값을 짝지어 담는 상자</td></tr>
+      <tr><td><code>def total(data):</code></td><td><b>사용자 함수</b> — 합계 계산을 이름 붙여 묶은 것</td></tr>
+      <tr><td><code>for item, cost in spending.items():</code></td><td><b>반복문</b> — 항목을 하나씩 꺼내 출력</td></tr>
+    </table>
+    <div class="note"><b>결과 검증하기</b>
+      Codex가 만든 코드는 이와 조금 다를 수 있습니다. <strong>합계가 71,000원으로 맞는지</strong> 직접 계산해 검증하세요. 완성되면 Codex에게 “이 코드를 한 줄씩 쉽게 설명해 줘”라고 요청해 보세요.</div>
+  </div>
+
+  <div class="block">
+    <span class="tag lab">✏️ 실습문제</span>
+    <div class="lab-box ai-lab">
+      <h4>🤖 AI 실습 4-1. 메뉴 바꿔 다시 실행하기</h4>
+      <div class="req">Codex에게 점심 메뉴를 <b>내가 좋아하는 메뉴 7가지</b>로 바꾸고, <b>메뉴 2개를 골라 주도록</b> 고쳐 달라고 한 뒤 실행 결과를 확인하세요.</div>
+      <details class="answer"><summary>예시 프롬프트 보기</summary><div class="body">
+        <div class="prompt"><code>lunch.py의 메뉴를 쌀국수, 초밥, 떡볶이, 냉면, 순대국, 파스타, 샌드위치로 바꾸고, 겹치지 않게 2개를 골라 보여 주도록 고쳐 줘. 고친 다음 실행해서 결과도 보여 줘.</code></div>
+        <p style="margin:6px 0 0;font-size:.9rem;color:var(--sub)">겹치지 않게 여러 개를 고를 때는 <code>random.sample(menus, 2)</code>를 씁니다. Codex가 어떤 방법을 썼는지 확인해 보세요.</p>
+      </div></details>
+    </div>
+
+    <div class="lab-box ai-lab">
+      <h4>🤖 AI 실습 4-2. 퀴즈 생성 프로그램</h4>
+      <div class="req">간단한 <b>수학 퀴즈 프로그램</b>을 Codex에게 만들게 하세요. 미리 준비한 문제 5개를 <b>무작위 순서</b>로 내고, 답을 입력받아 맞았는지 알려 준 뒤, 마지막에 <b>맞힌 개수 · 틀린 개수 · 정답률</b>을 보여 주는 프로그램입니다. 완성되면 문제까지 <b>무작위로 새로 만들어</b> 내도록 고쳐 보세요.</div>
+      <details class="answer"><summary>예시 프롬프트 · 실행 화면 · 검증 체크리스트 보기</summary><div class="body">
+        <p style="margin:0 0 4px"><b>STEP 1 — 기본 퀴즈 만들기</b></p>
+        <div class="prompt"><code>파이썬 초보야. quiz.py로 수학 퀴즈 프로그램을 만들어 줘.<br>1) "1 + 1"의 답은 "2"처럼 덧셈 문제 5개와 정답을 딕셔너리에 담아 줘.<br>2) 문제 순서는 random으로 섞어서 "[문제 1] 1 + 1 = ?" 형식으로 하나씩 보여 줘.<br>3) input()으로 답을 받아 맞으면 "정답입니다!", 틀리면 "틀렸습니다. 정답은 ○입니다."라고 알려 줘.<br>4) 다 풀면 맞힌 개수, 틀린 개수, 정답률(%)을 출력해 줘.<br>딕셔너리 · 리스트 · 반복문 · 조건문을 쓰고, 초보자용 주석을 달아 줘.</code></div>
+        <p style="margin:10px 0 4px"><b>STEP 1 결과 — Codex가 만든 quiz.py (예시)</b></p>
+<pre><code><span class="cm"># 수학 퀴즈 프로그램 (quiz.py)</span>
+<span class="cm"># random 모듈: 문제 순서를 무작위로 섞을 때 사용합니다.</span>
+<span class="kw">import</span> random
+
+<span class="cm"># 1) 딕셔너리: "문제": "정답" 짝으로 5문제를 저장합니다.</span>
+quiz = {
+    <span class="st">"1 + 1"</span>: <span class="st">"2"</span>,
+    <span class="st">"2 + 3"</span>: <span class="st">"5"</span>,
+    <span class="st">"3 + 7"</span>: <span class="st">"10"</span>,
+    <span class="st">"4 + 2"</span>: <span class="st">"6"</span>,
+    <span class="st">"5 + 9"</span>: <span class="st">"14"</span>,
+}
+
+<span class="cm"># 2) 리스트: 딕셔너리의 문제(키)만 꺼내 리스트로 만들고, 순서를 섞습니다.</span>
+questions = <span class="fn">list</span>(quiz.<span class="fn">keys</span>())
+random.<span class="fn">shuffle</span>(questions)
+
+<span class="cm"># 맞힌 개수와 틀린 개수를 셀 변수 (처음에는 0)</span>
+correct = <span class="nu">0</span>
+wrong = <span class="nu">0</span>
+
+<span class="cm"># 반복문: 섞인 문제를 하나씩 꺼내 출제합니다.</span>
+<span class="cm"># enumerate()는 번호(0, 1, 2 …)와 문제를 함께 꺼내 줍니다.</span>
+<span class="kw">for</span> number, question <span class="kw">in</span> <span class="fn">enumerate</span>(questions, start=<span class="nu">1</span>):
+    <span class="fn">print</span>(<span class="st">f"[문제 {number}] {question} = ?"</span>)
+
+    <span class="cm"># 3) input()으로 답을 받습니다. strip()은 앞뒤 빈칸을 지워 줍니다.</span>
+    answer = <span class="fn">input</span>(<span class="st">"답: "</span>).<span class="fn">strip</span>()
+
+    <span class="cm"># 조건문: 입력한 답과 정답을 비교합니다.</span>
+    <span class="kw">if</span> answer == quiz[question]:
+        <span class="fn">print</span>(<span class="st">"정답입니다!"</span>)
+        correct = correct + <span class="nu">1</span>
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="st">f"틀렸습니다. 정답은 {quiz[question]}입니다."</span>)
+        wrong = wrong + <span class="nu">1</span>
+
+    <span class="fn">print</span>()  <span class="cm"># 문제 사이에 빈 줄 한 칸</span>
+
+<span class="cm"># 4) 결과 요약: 맞힌 개수, 틀린 개수, 정답률(%)</span>
+total = <span class="fn">len</span>(questions)
+rate = correct / total * <span class="nu">100</span>
+
+<span class="fn">print</span>(<span class="st">"===== 퀴즈 결과 ====="</span>)
+<span class="fn">print</span>(<span class="st">f"맞힌 개수: {correct}개"</span>)
+<span class="fn">print</span>(<span class="st">f"틀린 개수: {wrong}개"</span>)
+<span class="fn">print</span>(<span class="st">f"정답률: {rate:.1f}%"</span>)</code></pre>
+        <p style="margin:4px 0 0;font-size:.88rem;color:var(--sub)">딕셔너리(<code>quiz</code>) · 리스트(<code>questions</code>) · 반복문(<code>for</code>) · 조건문(<code>if/else</code>)이 모두 들어 있습니다. 수강생의 Codex가 만든 코드는 이와 조금 다를 수 있습니다.</p>
+        <p style="margin:10px 0 4px"><b>STEP 2 — 문제를 무작위로 만들기</b></p>
+        <div class="prompt"><code>quiz.py를 고쳐서 문제를 미리 정해 두지 말고, 1~20 사이 숫자 두 개를 무작위로 골라 덧셈 · 뺄셈 문제 5개를 새로 만들어 내게 해 줘. 문제 수는 변수 하나만 바꾸면 조절되게 해 줘.</code></div>
+        <div class="note" style="margin-top:12px"><b>실행은 내가 직접</b>
+          이 프로그램은 <code>input()</code>으로 답을 입력해야 해서, Codex가 대신 풀 수 없습니다. 명령 프롬프트(또는 Codex의 터미널)에서 <code>codex-연습</code> 폴더로 이동해 <code>python quiz.py</code>를 입력하고 직접 풀어 보세요. 방법을 모르면 Codex에게 “quiz.py 실행 방법을 알려 줘”라고 물어보세요.</div>
+        <div class="result"><b>실행 화면 (예)</b>
+[문제 1] 3 + 7 = ?
+답: 10
+정답입니다!
+
+[문제 2] 1 + 1 = ?
+답: 2
+정답입니다!
+
+[문제 3] 5 + 9 = ?
+답: 13
+틀렸습니다. 정답은 14입니다.
+
+[문제 4] 2 + 3 = ?
+답: 5
+정답입니다!
+
+[문제 5] 4 + 2 = ?
+답: 8
+틀렸습니다. 정답은 6입니다.
+
+===== 퀴즈 결과 =====
+맞힌 개수: 3개
+틀린 개수: 2개
+정답률: 60.0%</div>
+        <p style="margin:8px 0 4px"><b>실행 후 스스로 점검 (검증 체크리스트)</b></p>
+        <ul class="plain" style="margin-top:0">
+          <li>실행할 때마다 <b>문제 순서가 바뀌는가?</b> (<code>random.shuffle</code>)</li>
+          <li>일부러 틀린 답을 넣으면 <b>정답을 알려 주는가?</b></li>
+          <li>5문제 중 3개를 맞히면 정답률이 <b>60.0%</b>로 나오는가? (3 ÷ 5 × 100)</li>
+          <li>답 앞뒤에 빈칸을 넣거나 글자를 넣으면 어떻게 되는가? 문제가 있으면 “답 앞뒤의 빈칸은 무시하고, 숫자가 아니면 다시 입력받게 고쳐 줘”라고 요청</li>
+          <li>코드에서 <b>딕셔너리 · 리스트 · for · if</b>가 어디에 쓰였는지 찾았는가? 모르면 “한 줄씩 설명해 줘”</li>
+        </ul>
+        <p style="margin:6px 0 0;font-size:.85rem;color:var(--sub)">참고: 교재 Project 01 「퀴즈 생성 프로그램 만들기」의 내용을 AI 실습용 프롬프트로 재구성했습니다.</p>
       </div></details>
     </div>
   </div>
