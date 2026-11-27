@@ -1003,8 +1003,10 @@ pyinstaller --onefile --windowed 컴퓨터용어사전.py</code></pre>
   <div class="block">
     <span class="tag concept">📖 개념 및 설명</span>
     <p><b class="hl">QR 코드</b>는 링크나 글자를 담은 사각형 무늬입니다. 파이썬 <b class="hl">qrcode</b> 라이브러리를 쓰면 몇 줄로 QR 이미지를 만들 수 있어요. 표준 라이브러리가 아니라 <code>pip</code>로 <b>설치</b>가 필요합니다.</p>
-<pre><code><span class="cm"># qrcode 라이브러리 설치 (최초 한 번)</span>
-pip install qrcode</code></pre>
+<pre><code><span class="cm"># qrcode 라이브러리 설치 (최초 한 번) — 이미지 저장용 pillow도 함께</span>
+pip install qrcode pillow</code></pre>
+    <div class="warn"><b>⚠️ ModuleNotFoundError: No module named 'PIL'</b>
+      <code>pip install qrcode</code>만 설치하면 실행할 때 이 오류가 납니다. <strong>PIL</strong>은 이미지 라이브러리 <strong>Pillow</strong>의 이름입니다. <strong>pip install pillow</strong>를 실행한 뒤 다시 실행하세요. (<code>pip install "qrcode[pil]"</code>로 한 번에 설치해도 됩니다.)</div>
   </div>
 
   <div class="block">
