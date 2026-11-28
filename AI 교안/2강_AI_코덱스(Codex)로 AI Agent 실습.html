@@ -579,73 +579,6 @@ menus = [<span class="st">"김치찌개"</span>, <span class="st">"비빔밥"</s
 
   <div class="block">
     <span class="tag ex">💡 예제 2</span>
-    <p><b>생활 속의 장바구니 담기</b> — 마트에서 물건을 담고 빼고 합계를 확인하는 장바구니를 <b>클래스</b>로 만듭니다. 장바구니 하나가 <b>객체</b>가 되고, 담은 상품 목록은 객체 안의 <b>리스트 속성</b>에 저장됩니다.</p>
-    <div class="prompt" style="border-color:#bfe9e3"><code>파이썬 초보야. 마트 장바구니를 관리하는 cart.py를 클래스로 만들어 줘.<br>Cart 클래스에 상품 이름 · 가격 · 수량을 리스트로 담고, 담기 · 빼기 · 목록 보기 · 합계 계산 메서드를 만들어 줘.<br>우유 2,900원 2개, 계란 6,500원 1개, 사과 1,200원 5개를 담았다가 사과를 뺀 뒤 목록과 합계를 출력하고 실행 결과도 보여 줘.</code></div>
-    <p>Codex가 만든 코드는 대략 아래와 같습니다.</p>
-<pre><code><span class="kw">class</span> <span class="fn">Cart</span>:
-    <span class="st">&quot;&quot;&quot;마트 장바구니를 관리하는 클래스입니다.&quot;&quot;&quot;</span>
-
-    <span class="kw">def</span> <span class="fn">__init__</span>(self, owner):
-        self.owner = owner  <span class="cm"># 장바구니 주인 이름입니다.</span>
-        self.items = []     <span class="cm"># 담은 상품을 저장하는 리스트입니다.</span>
-
-    <span class="kw">def</span> <span class="fn">add_item</span>(self, name, price, qty=<span class="nu">1</span>):
-        <span class="st">&quot;&quot;&quot;상품 이름, 가격, 수량을 딕셔너리로 만들어 리스트에 담습니다.&quot;&quot;&quot;</span>
-        self.items.<span class="fn">append</span>({<span class="st">"name"</span>: name, <span class="st">"price"</span>: price, <span class="st">"qty"</span>: qty})
-        <span class="fn">print</span>(<span class="st">f"{name} {qty}개를 담았습니다."</span>)
-
-    <span class="kw">def</span> <span class="fn">remove_item</span>(self, name):
-        <span class="st">&quot;&quot;&quot;이름이 같은 상품을 장바구니에서 뺍니다.&quot;&quot;&quot;</span>
-        <span class="kw">for</span> item <span class="kw">in</span> self.items:
-            <span class="kw">if</span> item[<span class="st">"name"</span>] == name:
-                self.items.<span class="fn">remove</span>(item)
-                <span class="fn">print</span>(<span class="st">f"{name}을(를) 뺐습니다."</span>)
-                <span class="kw">return</span>
-        <span class="fn">print</span>(<span class="st">f"{name}은(는) 장바구니에 없습니다."</span>)
-
-    <span class="kw">def</span> <span class="fn">total</span>(self):
-        <span class="st">&quot;&quot;&quot;담은 상품의 (가격 × 수량)을 모두 더해 돌려줍니다.&quot;&quot;&quot;</span>
-        <span class="kw">return</span> <span class="fn">sum</span>(item[<span class="st">"price"</span>] * item[<span class="st">"qty"</span>] <span class="kw">for</span> item <span class="kw">in</span> self.items)
-
-    <span class="kw">def</span> <span class="fn">show</span>(self):
-        <span class="st">&quot;&quot;&quot;장바구니 목록과 합계를 보여 줍니다.&quot;&quot;&quot;</span>
-        <span class="fn">print</span>(<span class="st">f"\n[{self.owner}님의 장바구니]"</span>)
-        <span class="kw">for</span> item <span class="kw">in</span> self.items:
-            subtotal = item[<span class="st">"price"</span>] * item[<span class="st">"qty"</span>]
-            <span class="fn">print</span>(<span class="st">f"- {item['name']}: {item['price']:,}원 x {item['qty']}개 = {subtotal:,}원"</span>)
-        <span class="fn">print</span>(<span class="st">f"합계: {self.total():,}원"</span>)
-
-
-<span class="cm"># 장바구니 객체를 만들고 상품을 담아 봅니다.</span>
-cart = <span class="fn">Cart</span>(<span class="st">"김파이"</span>)
-cart.<span class="fn">add_item</span>(<span class="st">"우유"</span>, <span class="nu">2900</span>, <span class="nu">2</span>)
-cart.<span class="fn">add_item</span>(<span class="st">"계란"</span>, <span class="nu">6500</span>)
-cart.<span class="fn">add_item</span>(<span class="st">"사과"</span>, <span class="nu">1200</span>, <span class="nu">5</span>)
-cart.<span class="fn">remove_item</span>(<span class="st">"사과"</span>)
-cart.<span class="fn">show</span>()</code></pre>
-    <div class="result"><b>실행 결과</b>
-우유 2개를 담았습니다.
-계란 1개를 담았습니다.
-사과 5개를 담았습니다.
-사과을(를) 뺐습니다.
-
-[김파이님의 장바구니]
-- 우유: 2,900원 x 2개 = 5,800원
-- 계란: 6,500원 x 1개 = 6,500원
-합계: 12,300원</div>
-    <table>
-      <tr><th>코드 속 요소</th><th>오늘 배울 파이썬 문법</th></tr>
-      <tr><td><code>class Cart:</code> · <code>cart = Cart("김파이")</code></td><td><b>클래스와 객체</b> — 장바구니 설계도(클래스)로 실제 장바구니(객체)를 만듦</td></tr>
-      <tr><td><code>def __init__(self, owner):</code></td><td><b>생성자</b> — 객체가 만들어질 때 주인 이름과 빈 리스트를 준비</td></tr>
-      <tr><td><code>self.items = []</code></td><td><b>리스트 속성</b> — 담은 상품(딕셔너리)을 모아 두는 곳</td></tr>
-      <tr><td><code>add_item</code> · <code>remove_item</code> · <code>total</code> · <code>show</code></td><td><b>메서드</b> — 장바구니가 할 수 있는 일(담기 · 빼기 · 합계 · 보기)</td></tr>
-    </table>
-    <div class="note"><b>결과 검증하기</b>
-      우유 2,900 × 2 = 5,800원, 계란 6,500 × 1 = 6,500원이므로 합계는 <strong>12,300원</strong>이 맞습니다. 사과는 뺐으니 목록에 없어야 합니다. Codex가 만든 코드는 이와 조금 다를 수 있습니다. 완성되면 “장바구니에 담긴 상품 수를 세는 count 메서드도 추가해 줘”처럼 기능을 하나씩 더해 보세요.</div>
-  </div>
-
-  <div class="block">
-    <span class="tag ex">💡 예제 3</span>
     <p><b>용돈기입장 만들기</b> — 항목별 지출을 <b>딕셔너리</b>에 담고, 합계를 구하는 <b>함수</b>를 써서 항목별 금액과 합계를 보여 주는 프로그램입니다.</p>
     <div class="prompt" style="border-color:#bfe9e3"><code>이번 주 지출을 정리하는 용돈기입장 프로그램을 money.py로 만들어 줘. 식비 35000, 교통비 12000, 카페 9000, 책 15000을 딕셔너리에 담고, 합계를 구하는 함수를 만들어서 항목별 금액과 합계를 보기 좋게 출력해 줘. 주석도 달고 실행 결과도 보여 줘.</code></div>
     <p>Codex가 만든 코드는 대략 아래와 같습니다.</p>
@@ -675,7 +608,7 @@ spending = {<span class="st">"식비"</span>: <span class="nu">35000</span>, <sp
   </div>
 
   <div class="block">
-    <span class="tag ex">💡 예제 4</span>
+    <span class="tag ex">💡 예제 3</span>
     <p><b>택시 요금 계산기 만들기</b> — 이동 거리를 넣으면 서울 택시 요금을 계산해 주는 <b>함수</b>를 만듭니다. 주간 요금을 <b>기본값</b>으로 두고, 심야일 때만 요금을 바꿔 넘깁니다.</p>
     <div class="prompt" style="border-color:#bfe9e3"><code>파이썬 초보야. 서울 택시 요금을 계산하는 taxi.py를 만들어 줘.<br>요금 기준: 1.6km까지 기본요금 4,800원, 이후 131m마다 100원. 심야 22~23시 · 02~04시는 5,800원 · 120원, 23~02시는 6,700원 · 140원.<br>taxi_fare(거리, 기본요금=4800, 단위요금=100) 함수로 만들고, 1km · 5km 주간과 5km 심야 요금을 출력해 실행 결과도 보여 줘.</code></div>
     <p>Codex가 실제로 만든 <code>taxi.py</code>입니다. 함수 설명(docstring)과 주석까지 꼼꼼히 달아 주었습니다.</p>
