@@ -538,7 +538,7 @@ count = <span class="nu">0</span>
   </div>
 
   <div class="block">
-    <span class="tag ex">💡 예제</span>
+    <span class="tag ex">💡 예제 1</span>
 <pre><code><span class="cm"># 기본 매개변수: exp를 생략하면 제곱(2)</span>
 <span class="kw">def</span> <span class="fn">power</span>(base, exp=<span class="nu">2</span>):
     <span class="kw">return</span> base ** exp
@@ -557,6 +557,43 @@ count = <span class="nu">0</span>
 8
 6
 15</div>
+  </div>
+
+  <div class="block">
+    <span class="tag ex">💡 예제 2 — 서울 택시 요금 계산기</span>
+    <p>서울 중형택시는 <b>1.6km까지 기본요금 4,800원</b>, 그 뒤로 <b>131m마다 100원</b>이 붙습니다. 심야에는 기본요금과 거리 요금이 함께 오릅니다. 평소에 가장 많이 쓰는 주간 요금을 <b>기본값</b>으로 두고, 심야일 때만 값을 넘깁니다.</p>
+    <table>
+      <tr><th style="width:26%">시간대</th><th>기본요금 (1.6km까지)</th><th>거리 요금</th><th>호출 방법</th></tr>
+      <tr><td><b>주간</b></td><td>4,800원</td><td>131m당 100원</td><td><code>taxi_fare(5)</code> — 기본값 사용</td></tr>
+      <tr><td><b>심야</b> 22~23시, 02~04시</td><td>5,800원</td><td>131m당 120원</td><td><code>taxi_fare(5, 5800, 120)</code></td></tr>
+      <tr><td><b>심야</b> 23~02시</td><td>6,700원</td><td>131m당 140원</td><td><code>taxi_fare(5, 6700, 140)</code></td></tr>
+    </table>
+<pre><code><span class="cm"># 서울 중형택시 요금 계산기 (거리 요금 기준)</span>
+<span class="cm"># 기본요금: 1.6km까지 4,800원 / 이후 131m마다 100원 (주간)</span>
+<span class="kw">def</span> <span class="fn">taxi_fare</span>(distance, base_fare=<span class="nu">4800</span>, unit_fare=<span class="nu">100</span>):
+    base_km = <span class="nu">1.6</span>                      <span class="cm"># 기본 거리(km)</span>
+    unit_m = <span class="nu">131</span>                       <span class="cm"># 거리 요금이 붙는 단위(m)</span>
+
+    <span class="kw">if</span> distance &lt;= base_km:            <span class="cm"># 기본 거리 이내면 기본요금만</span>
+        <span class="kw">return</span> base_fare
+
+    extra_m = <span class="fn">round</span>((distance - base_km) * <span class="nu">1000</span>)   <span class="cm"># 기본 거리를 넘은 거리(m)</span>
+    count = extra_m // unit_m                      <span class="cm"># 131m를 몇 번 달렸나</span>
+    <span class="kw">return</span> base_fare + count * unit_fare
+
+<span class="cm"># 함수 호출 예제</span>
+<span class="fn">print</span>(<span class="fn">taxi_fare</span>(<span class="nu">1</span>))              <span class="cm"># 주간 1km: 기본 거리 이내 → 4800</span>
+<span class="fn">print</span>(<span class="fn">taxi_fare</span>(<span class="nu">5</span>))              <span class="cm"># 주간 5km: 기본요금 4800 + 거리 요금</span>
+<span class="fn">print</span>(<span class="fn">taxi_fare</span>(<span class="nu">5</span>, <span class="nu">5800</span>, <span class="nu">120</span>))   <span class="cm"># 심야(22~23시, 02~04시) 5km</span>
+<span class="fn">print</span>(<span class="fn">taxi_fare</span>(<span class="nu">5</span>, <span class="nu">6700</span>, <span class="nu">140</span>))   <span class="cm"># 심야(23~02시) 5km</span></code></pre>
+    <div class="result"><b>실행 결과</b>
+4800
+7300
+8800
+10200</div>
+    <p><b>손으로 확인해 보기</b> — 5km는 기본 거리 1.6km를 넘은 <b>3,400m</b>를 더 달렸고, 3,400 ÷ 131 = 25번(몫)이므로 주간 요금은 4,800 + 25 × 100 = <b>7,300원</b>입니다. 23~02시 심야는 6,700 + 25 × 140 = <b>10,200원</b>입니다.</p>
+    <div class="note"><b>실제 미터기와 다른 점</b>
+      실제 요금에는 막히는 길에서 붙는 <strong>시간 요금</strong>(주간 30초당 100원)과 <strong>시계외 할증</strong>(서울 밖으로 나갈 때 20%)도 더해집니다. 이 예제는 거리 요금만 계산합니다. (기준: 서울시 택시요금, 2023.2.1 조정 · 2026년 현재)</div>
   </div>
 
   
@@ -1371,9 +1408,28 @@ color = <span class="st">"빨강"</span>
     <span class="fn">print</span>(c, <span class="st">"자동차가 달립니다."</span>)
 <span class="fn">drive</span>(color)
 
-<span class="cm"># 객체지향: 데이터(color)와 동작(drive)을 하나로 묶음 → 다음 모듈에서 학습</span></code></pre>
+<span class="cm"># 객체지향: 데이터(color, model)와 동작(drive)을 하나로 묶음</span>
+<span class="cm"># 자동차 클래스를 정의</span>
+<span class="kw">class</span> <span class="fn">Car</span>:
+  <span class="kw">def</span> <span class="fn">__init__</span>(self, color, model):
+    self.color = color
+    self.model = model
+
+  <span class="kw">def</span> <span class="fn">drive</span>(self):
+    <span class="fn">print</span>(<span class="st">f"{self.color} {self.model} 자동차가 달린다."</span>)
+
+<span class="cm"># 자동차 객체 생성 및 주행</span>
+car<span class="nu">1</span> = <span class="fn">Car</span>(<span class="st">"흰색"</span>, <span class="st">"Avante"</span>)
+car<span class="nu">1</span>.<span class="fn">drive</span>()
+
+car<span class="nu">2</span> = <span class="fn">Car</span>(<span class="st">"검정"</span>, <span class="st">"Sonata"</span>)
+car<span class="nu">2</span>.<span class="fn">drive</span>()</code></pre>
     <div class="result"><b>실행 결과</b>
-빨강 자동차가 달립니다.</div>
+빨강 자동차가 달립니다.
+흰색 Avante 자동차가 달린다.
+검정 Sonata 자동차가 달린다.</div>
+    <div class="note"><b>무엇이 달라졌나?</b>
+      절차지향에서는 색(<code>color</code>)과 달리기(<code>drive</code>)가 따로 있어 자동차가 늘어날수록 변수가 흩어집니다. 객체지향에서는 <strong>Car 클래스 하나</strong>에 색 · 모델(속성)과 달리기(메서드)를 묶어 두고, <code>car1</code> · <code>car2</code>처럼 <strong>객체만 늘리면</strong> 됩니다. <code>class</code> · <code>__init__</code> · <code>self</code>는 다음 모듈에서 자세히 배웁니다.</div>
   </div>
 
   
@@ -1426,7 +1482,7 @@ color = <span class="st">"빨강"</span>
 
   <div class="block">
     <span class="tag ex">💡 예제</span>
-    <p>색·모델명·바퀴 수를 속성으로, 달리기를 기능으로 갖는 Car 클래스입니다.</p>
+    <p>색·모델명·바퀴 수를 속성으로, 달리기를 기능으로 갖는 Car 클래스입니다. 객체를 하나씩 만들 수도 있고, 여러 객체를 <b>리스트</b>에 담아 반복문으로 한꺼번에 다룰 수도 있습니다.</p>
     <div style="display:flex;justify-content:center;margin:16px 0">
       <svg width="230" height="215" viewBox="0 0 230 215" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Car 클래스 다이어그램">
         <style>
@@ -1444,22 +1500,44 @@ color = <span class="st">"빨강"</span>
         <text class="uml-mem" x="32" y="184">+drive()</text>
       </svg>
     </div>
-<pre><code><span class="kw">class</span> <span class="fn">Car</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(self, color, model, wheel):
-        self.color = color  <span class="cm">#색상</span>
-        self.model = model  <span class="cm">#모델명</span>
-        self.wheel = wheel  <span class="cm">#바퀴 수</span>
+<pre><code><span class="cm"># 자동차 클래스를 정의</span>
+<span class="kw">class</span> <span class="fn">Car</span>:
+  <span class="kw">def</span> <span class="fn">__init__</span>(self, color, model, wheel):
+    self.color = color
+    self.model = model
+    self.wheel = wheel
 
-    <span class="kw">def</span> <span class="fn">drive</span>(self):  <span class="cm"># 메서드</span>
-        <span class="cm"># print(self.color, self.model, "가 달립니다.")</span>
-        <span class="fn">print</span>(f<span class="st">"{self.color} {self.model}가 달립니다."</span>)
+  <span class="kw">def</span> <span class="fn">drive</span>(self):
+    <span class="fn">print</span>(<span class="st">f"{self.color} {self.model} 자동차가 달린다. 바퀴 수: {self.wheel}"</span>)
 
-car = <span class="fn">Car</span>(<span class="st">"빨강"</span>, <span class="st">"Sonata"</span>, <span class="nu">4</span>) <span class="cm">#객체(인스턴스) 생성</span>
-car.<span class="fn">drive</span>()  <span class="cm">#메서드 호출</span>
-<span class="fn">print</span>(<span class="st">"바퀴 수:"</span>, car.wheel) <span class="cm">#속성 접근</span></code></pre>
+<span class="cm"># 자동차 객체 생성 및 주행</span>
+car<span class="nu">1</span> = <span class="fn">Car</span>(<span class="st">"흰색"</span>, <span class="st">"Avante"</span>, <span class="nu">4</span>)
+car<span class="nu">1</span>.<span class="fn">drive</span>()
+
+car<span class="nu">2</span> = <span class="fn">Car</span>(<span class="st">"검정"</span>, <span class="st">"Sonata"</span>, <span class="nu">4</span>)
+car<span class="nu">2</span>.<span class="fn">drive</span>()
+
+
+<span class="cm"># 객체 리스트</span>
+<span class="fn">print</span>(<span class="st">"객체 리스트에 있는 자동차 정보:"</span>)
+car_list = [
+  <span class="fn">Car</span>(<span class="st">"은색"</span>, <span class="st">"EV6"</span>, <span class="nu">4</span>),
+  <span class="fn">Car</span>(<span class="st">"빨강"</span>, <span class="st">"K5"</span>, <span class="nu">4</span>),
+  <span class="fn">Car</span>(<span class="st">"파랑"</span>, <span class="st">"Sorento"</span>, <span class="nu">4</span>)
+]
+<span class="kw">for</span> car <span class="kw">in</span> car_list:
+  car.<span class="fn">drive</span>()
+<span class="fn">print</span>(<span class="st">"총 자동차 수:"</span>, <span class="fn">len</span>(car_list))  <span class="cm"># for문 밖: 한 번만 출력</span></code></pre>
     <div class="result"><b>실행 결과</b>
-빨강 Sonata가 달립니다.
-바퀴 수: 4</div>
+흰색 Avante 자동차가 달린다. 바퀴 수: 4
+검정 Sonata 자동차가 달린다. 바퀴 수: 4
+객체 리스트에 있는 자동차 정보:
+은색 EV6 자동차가 달린다. 바퀴 수: 4
+빨강 K5 자동차가 달린다. 바퀴 수: 4
+파랑 Sorento 자동차가 달린다. 바퀴 수: 4
+총 자동차 수: 3</div>
+    <div class="note"><b>들여쓰기 위치에 주의</b>
+      마지막 <code>print("총 자동차 수:", ...)</code>를 for문 안에 들여 쓰면 자동차마다 한 번씩, 모두 3번 출력됩니다. 전체 개수는 반복이 끝난 뒤 <strong>한 번만</strong> 출력하도록 for문 밖(들여쓰기 없이)에 씁니다.</div>
   </div>
 
   <div class="block">
@@ -1505,9 +1583,9 @@ calc = <span class="fn">Calculator</span>()
 
   <div class="block">
     <span class="tag ex">💡 예제 — 장바구니(리스트 속성)</span>
-    <p>리스트를 속성으로 두고, 아이템을 추가·제거·조회하는 <code>Cart</code> 클래스입니다.</p>
+    <p>리스트를 속성으로 두고, 아이템을 추가 · 조회 · 제거하고, 장바구니를 비우거나 담긴 개수를 세는 <code>Cart</code> 클래스입니다.</p>
     <div style="display:flex;justify-content:center;margin:16px 0">
-      <svg width="250" height="240" viewBox="0 0 250 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cart 클래스 다이어그램">
+      <svg width="250" height="295" viewBox="0 0 250 295" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cart 클래스 다이어그램">
         <style>
           .uml-box{fill:#ffffff;stroke:#4a90d9;stroke-width:2}
           .uml-name{font:700 18px "Malgun Gothic",sans-serif;fill:#1f2933}
@@ -1515,42 +1593,68 @@ calc = <span class="fn">Calculator</span>()
         </style>
         <rect class="uml-box" x="15" y="10" width="220" height="45"/>
         <rect class="uml-box" x="15" y="55" width="220" height="55"/>
-        <rect class="uml-box" x="15" y="110" width="220" height="115"/>
+        <rect class="uml-box" x="15" y="110" width="220" height="170"/>
         <text class="uml-name" x="125" y="39" text-anchor="middle">Cart</text>
         <text class="uml-mem" x="32" y="88">-items: list</text>
         <text class="uml-mem" x="32" y="145">+add_item()</text>
-        <text class="uml-mem" x="32" y="172">+remove_item()</text>
-        <text class="uml-mem" x="32" y="199">+get_items()</text>
+        <text class="uml-mem" x="32" y="172">+get_items()</text>
+        <text class="uml-mem" x="32" y="199">+remove_item()</text>
+        <text class="uml-mem" x="32" y="226">+clear_cart()</text>
+        <text class="uml-mem" x="32" y="253">+item_count()</text>
       </svg>
     </div>
 <pre><code><span class="kw">class</span> <span class="fn">Cart</span>:
-    <span class="cm"># 초기화 메서드</span>
-    <span class="kw">def</span> <span class="fn">__init__</span>(self):
-        self.items = []  <span class="cm"># 아이템을 저장하는 리스트</span>
+  <span class="kw">def</span> <span class="fn">__init__</span>(self):
+    self.items = []  <span class="cm"># 장바구니에 담긴 아이템 목록</span>
 
-    <span class="cm"># 아이템 추가 메서드</span>
-    <span class="kw">def</span> <span class="fn">add_item</span>(self, item):
-        self.items.<span class="fn">append</span>(item)
+  <span class="cm"># 아이템 추가</span>
+  <span class="kw">def</span> <span class="fn">add_item</span>(self, item):
+    self.items.<span class="fn">append</span>(item)  <span class="cm"># 아이템을 장바구니에 추가</span>
 
-    <span class="cm"># 아이템 제거 메서드</span>
-    <span class="kw">def</span> <span class="fn">remove_item</span>(self, item):
-        <span class="kw">if</span> item <span class="kw">in</span> self.items:
-            self.items.<span class="fn">remove</span>(item)
+  <span class="cm"># 장바구니에 담긴 아이템 목록 출력</span>
+  <span class="kw">def</span> <span class="fn">get_items</span>(self):
+    <span class="fn">print</span>(<span class="st">"장바구니:"</span>, self.items)
 
-    <span class="cm"># 아이템 조회 메서드</span>
-    <span class="kw">def</span> <span class="fn">get_items</span>(self):
-        <span class="kw">return</span> f<span class="st">"장바구니: {self.items}"</span>
+  <span class="cm"># 아이템 제거</span>
+  <span class="kw">def</span> <span class="fn">remove_item</span>(self, item):
+    <span class="kw">if</span> item <span class="kw">in</span> self.items:
+      self.items.<span class="fn">remove</span>(item)
+    <span class="kw">else</span>:
+      <span class="fn">print</span>(<span class="st">f"{item}은(는) 장바구니에 없습니다."</span>)
 
-cart = <span class="fn">Cart</span>()  <span class="cm"># 장바구니 객체 생성</span>
-cart.<span class="fn">add_item</span>(<span class="st">"사과"</span>)
-cart.<span class="fn">add_item</span>(<span class="st">"바나나"</span>)
-<span class="fn">print</span>(cart.<span class="fn">get_items</span>())  <span class="cm"># 장바구니: ['사과', '바나나']</span>
+  <span class="cm"># 장바구니 비우기</span>
+  <span class="kw">def</span> <span class="fn">clear_cart</span>(self):
+    self.items = []
+    <span class="fn">print</span>(<span class="st">"장바구니가 비워졌습니다."</span>)
 
-cart.<span class="fn">remove_item</span>(<span class="st">"사과"</span>)
-<span class="fn">print</span>(cart.<span class="fn">get_items</span>())  <span class="cm"># 장바구니: ['바나나']</span></code></pre>
+  <span class="cm"># 장바구니에 담긴 아이템 수 확인</span>
+  <span class="kw">def</span> <span class="fn">item_count</span>(self):
+    <span class="kw">return</span> <span class="fn">len</span>(self.items)
+
+my_cart = <span class="fn">Cart</span>()
+my_cart.<span class="fn">add_item</span>(<span class="st">"사과"</span>)
+my_cart.<span class="fn">add_item</span>(<span class="st">"바나나"</span>)
+my_cart.<span class="fn">get_items</span>()
+<span class="fn">print</span>(<span class="st">"장바구니 아이템 수:"</span>, my_cart.<span class="fn">item_count</span>())
+
+my_cart.<span class="fn">remove_item</span>(<span class="st">"사과"</span>)
+my_cart.<span class="fn">remove_item</span>(<span class="st">"오렌지"</span>)  <span class="cm"># 장바구니에 없는 아이템 제거 시도</span>
+my_cart.<span class="fn">get_items</span>()
+<span class="fn">print</span>(<span class="st">"장바구니 아이템 수:"</span>, my_cart.<span class="fn">item_count</span>())
+
+<span class="cm"># 장바구니 비우기 테스트</span>
+my_cart.<span class="fn">clear_cart</span>()
+my_cart.<span class="fn">get_items</span>()
+<span class="fn">print</span>(<span class="st">"장바구니 아이템 수:"</span>, my_cart.<span class="fn">item_count</span>())</code></pre>
     <div class="result"><b>실행 결과</b>
-장바구니: ['사과', '바나나']
-장바구니: ['바나나']</div>
+장바구니: [&#x27;사과&#x27;, &#x27;바나나&#x27;]
+장바구니 아이템 수: 2
+오렌지은(는) 장바구니에 없습니다.
+장바구니: [&#x27;바나나&#x27;]
+장바구니 아이템 수: 1
+장바구니가 비워졌습니다.
+장바구니: []
+장바구니 아이템 수: 0</div>
   </div>
 
   <div class="block">
@@ -1694,22 +1798,32 @@ students = [<span class="fn">Student</span>(<span class="st">"홍길동"</span>,
 
   <div class="block">
     <span class="tag ex">💡 예제</span>
-    <p>카드가 생성될 때마다 번호를 1씩 늘려 자동 부여합니다.</p>
-<pre><code><span class="kw">class</span> <span class="fn">Card</span>:
-    count = <span class="nu">1000</span>              <span class="cm"># 클래스 변수 (모두 공유)</span>
+    <p>카드가 생성될 때마다 번호를 1씩 늘려 자동 부여합니다. <code>count</code>는 모든 카드가 함께 쓰는 <b>클래스 변수</b>, <code>owner</code>는 카드마다 따로 갖는 <b>인스턴스 변수</b>입니다.</p>
+<pre><code><span class="cm"># 카드 클래스를 정의</span>
+<span class="kw">class</span> <span class="fn">Card</span>:
+  count = <span class="nu">1000</span>  <span class="cm"># 클래스 변수 (모든 카드 객체가 공유하는 카드 번호)</span>
 
-    <span class="kw">def</span> <span class="fn">__init__</span>(self, owner):
-        <span class="fn">Card</span>.count += <span class="nu">1</span>       <span class="cm"># 공유 값 증가</span>
-        self.number = <span class="fn">Card</span>.count  <span class="cm"># 인스턴스 변수</span>
-        self.owner = owner
+  <span class="kw">def</span> <span class="fn">__init__</span>(self, owner):
+    self.owner = owner
+    <span class="fn">Card</span>.count += <span class="nu">1</span>   <span class="cm"># 카드 번호를 1 증가시킴</span>
 
-c1 = <span class="fn">Card</span>(<span class="st">"홍길동"</span>)
-c2 = <span class="fn">Card</span>(<span class="st">"김파이"</span>)
-<span class="fn">print</span>(c1.number, c2.number)   <span class="cm"># 1001 1002</span>
-<span class="fn">print</span>(<span class="st">"발급된 카드 수:"</span>, <span class="fn">Card</span>.count - <span class="nu">1000</span>)</code></pre>
+  <span class="kw">def</span> <span class="fn">get_info</span>(self):
+    <span class="fn">print</span>(<span class="st">f"카드 소유자: {self.owner}, 카드 번호: {Card.count}"</span>)
+
+c<span class="nu">1</span> = <span class="fn">Card</span>(<span class="st">"김파이"</span>)
+c<span class="nu">1</span>.<span class="fn">get_info</span>()
+
+c<span class="nu">2</span> = <span class="fn">Card</span>(<span class="st">"오자바"</span>)
+c<span class="nu">2</span>.<span class="fn">get_info</span>()</code></pre>
     <div class="result"><b>실행 결과</b>
-1001 1002
-발급된 카드 수: 2</div>
+카드 소유자: 김파이, 카드 번호: 1001
+카드 소유자: 오자바, 카드 번호: 1002</div>
+    <div class="note"><b>한 걸음 더 — 내 카드 번호 기억하기</b>
+      <code>get_info()</code>는 <strong>지금의</strong> <code>Card.count</code>를 보여 줍니다. 그래서 c2를 만든 뒤에 <code>c1.get_info()</code>를 다시 부르면 김파이의 카드 번호도 <strong>1002</strong>로 나옵니다. 카드마다 번호를 기억하려면 생성자에서 번호를 <strong>인스턴스 변수</strong>에 저장하고, 출력할 때 <code>self.number</code>를 쓰면 됩니다.</div>
+<pre><code>  <span class="kw">def</span> <span class="fn">__init__</span>(self, owner):
+    self.owner = owner
+    <span class="fn">Card</span>.count += <span class="nu">1</span>
+    self.number = <span class="fn">Card</span>.count   <span class="cm"># 내 카드 번호를 인스턴스 변수에 저장</span></code></pre>
   </div>
 
   
